@@ -1,0 +1,73 @@
+body{
+    margin: 0;
+    padding: 0;
+    margin-top: -22px;
+    background-image: url("https://th.bing.com/th/id/OIP.DHXPuW7I3sUaUYNtArw4zwHaEK?rs=1&pid=ImgDetMain");    
+    color: whitesmoke;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(00px);
+    }
+    #heading{
+        padding-top: 40px;
+    }
+#wrapper{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+#ip-container:focus-within{
+    border: 2px solid rgba(31, 142, 175, 0.5);
+    box-shadow: 0px 5px 15px rgba(0, 0, 255, 0.3);
+}
+input{
+    outline: none;
+    border: 0px;
+    background-color: transparent;
+    text-align: center;
+    width: 100%;
+}
+#ip-container{
+    padding: 5px 15px;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 300px;
+    border-radius: 15px;
+}
+.city-name{
+    margin-top: 60px;
+    font-size: 25px;
+    font-family: Verdana;
+}
+.date{
+    margin-top: 20px;
+    font-size: 25px;
+    font-family: Verdana;
+    margin-bottom: 50px;
+}
+#weather-container{
+    padding: 10px 40px;
+    width: 270px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid whitesmoke;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+#weather-container > h1 {
+    font-size: 45px;
+    margin: 0px;
+    padding: 25px;
+    font-weight: 500;
+    font-family: monospace;
+}
+#weather-container > p{
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+h3{
+    margin-top: 40px;
+    font-size: 30px;
+    font-family: sans-serif;
+}

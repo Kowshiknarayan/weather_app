@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body id="body">
+    <div id="wrapper">
+        <center>
+            <h1 id="heading">
+                Enter your city name
+            </h1>
+            <div id="ip-container">
+                <input type="text" id="in"placeholder="Enter your city name">
+            </div>
+            <h2 id="city-name"class="city-name">Cityname, Country</h2>
+            <h3 class="date" id="datetime">date/month/year, day</h3>
+            <div id="weather-container">
+                <h1 id="main">0.00C </h1>
+                <p id="feels">feels like</p>
+            </div>
+            <h3 id="desc">Weather condition</h3>
+        </center>
+    </div>
+</body>
+    <script>
+        //remove madurai or any city name for give console.log city name // ${city}
+        //" +city+ "
+        var input=document.getElementById("in")
+        var cityname=document.getElementById("city-name")
+        var dataTime=document.getElementById("datetime")
+        var main=document.getElementById("main")
+        var feels=document.getElementById("feels")
+        var desc=document.getElementById("desc")
+        var body=document.getElementById("body")
+        async function fetchData(city)
+        {
+            let response =await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=4fd239414e1c53315dd1cb53ed561e60`)
+            response =await response.json()
+            console.log(response)
+            return response
+        }
+
+        const changeBackground = (temp) => {
+            // https://th.bing.com/th/id/OIP.hjoLADVem4mRVumWLq6_CgHaEi?rs=1&pid=ImgDetMain
+            if(temp < 10){
+                body.style.backgroundImage = 'url("https://loveincorporated.blob.core.windows.net/contentimages/gallery/a3ed32c5-42e5-448c-b08f-76e754b7001e-coldest_places_stanley_2.jpg")'
+            }
+            else if(temp >= 10 && temp <20){
+                body.style.backgroundImage = 'url("https://media.cntraveler.com/photos/565398b9659c4b4874864b8e/master/pass/oymyakon-russia-cr-getty.jpg")'
+            }
+            else if(temp >=20 && temp <30){
+                body.style.backgroundImage = 'url("https://www.wallpaperflare.com/static/885/508/23/pasture-mountains-shadows-cloudy-wallpaper.jpg")'
+            }
+            else if(temp >=30 && temp <40){
+                body.style.backgroundImage = 'url("https://wallpapercave.com/wp/wp3085494.jpg")'
+            }
+            else if(temp >=40){
+                body.style.backgroundImage = 'url("https://th.bing.com/th/id/OIP.G0Lg9r3cxjlj2K0ETa6FiwHaFj?rs=1&pid=ImgDetMain")'
+            }
+        }
+
+        // fetchData("madurai");
+        // Math "first letter starts with caps"
+        function handlechange(event){
+
+            fetchData(event.target.value).then((response) => {
+
+                changeBackground(response.main.temp)
+
+                main.innerText=Math.round(response.main.temp) +" °C"
+                feels.innerText="Feels Like "+response.main.feels_like
+                cityname.innerText=response.name + ", " + response.sys.country
+                desc.innerText=response.weather[0].main
+
+                let data = new Date(response.dt*1000-(response.timezone*1000)); //predefined logic for data and time
+                
+                data =data.toString() // given data was in object need to seaprate..
+                data =data.split(' ')
+                console.log(data)
+                dataTime.innerText = data[2] +' '+ data[1] + ' '+ data[3] + ', ' + data[0]
+                // updateDateTime();
+            });              
+            }
+
+        input.addEventListener('change', handlechange)
+    </script>
+</html>
